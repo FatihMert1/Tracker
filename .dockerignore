@@ -1,0 +1,11 @@
+node_modules
+
+*.log
+
+*.lock
+
+
+tests
+
+tests/*.spec.ts
+
