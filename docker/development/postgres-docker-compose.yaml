@@ -1,0 +1,26 @@
+version: "3"
+services:
+  tracker-db:
+    container_name: tracker-db
+    image: postgres
+    ports:
+      - "5315:5432"
+    networks:
+      - tracker-network
+    restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 10s
+      retries: 120
+
+    volumes:
+      - /Users/fatihrahmanmert/Desktop/docker/volumes/tracker/data:/var/lib/pg_data
+
+    environment:
+      POSTGRES_PASSWORD: "password"
+      PG_DATA: /var/lib/pg_data
+
+networks:
+  tracker-network:
+    external: true

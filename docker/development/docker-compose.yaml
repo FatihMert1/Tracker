@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  tracker-api:
+    container_name: tracker-api
+    build:
+      context: ./../..
+      dockerfile: ./docker/development/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - tracker-network
+    restart: always
+
+networks:
+  tracker-network:
+    external: true
