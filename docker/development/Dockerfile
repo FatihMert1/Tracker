@@ -10,7 +10,7 @@ COPY ["package.json", "./"]
 
 RUN yarn install
 
-COPY ../.. .
+COPY . .
 
 
 RUN yarn build

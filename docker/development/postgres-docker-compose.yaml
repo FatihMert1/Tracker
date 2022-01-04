@@ -4,7 +4,7 @@ services:
     container_name: tracker-db
     image: postgres
     ports:
-      - "5315:5432"
+      - "5433:5432"
     networks:
       - tracker-network
     restart: always
