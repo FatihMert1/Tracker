@@ -1,22 +1,34 @@
 import User from "./User";
 import StringValidator from "../validations/StringValidations";
+import {Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 
-
+@Entity("employees")
 class Employee {
 
+    @PrimaryGeneratedColumn("increment")
     private id!: number;
-    private createdAt!: Date;
-    private updatedAt!: Date | null;
+
+    @Column({type: "boolean", name: "is_deleted", default: false})
     private isDeleted!: boolean;
 
+    @Column({type: "timestamptz", name: "created_at", nullable: false, default: new Date()})
+    private createdAt!: Date;
+
+    @Column({type: "timestamptz", name: "updated_at", nullable: true})
+    private updatedAt!: Date | null;
+
+
+    @Column({type: "integer", name: "user_id", nullable: false})
     private userId!: number;
+
+    @OneToOne(() => User)
+    @JoinColumn()
     private user!: User;
 
+    @Column({type: "varchar", name: "identity_number", nullable: false, length: 11})
     private identityNumber!: string;
 
-
     private constructor() {}
-
 
     public static createTemporaryEmployee(userId: number, identityNumber: string): Employee {
         const employee = new Employee();

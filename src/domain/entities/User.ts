@@ -1,11 +1,31 @@
 import StringValidator from "../validations/StringValidations";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
+@Entity("users")
 class User {
 
+    @PrimaryGeneratedColumn("increment")
+    private id!: number;
 
+    @Column({type: "boolean", name: "is_deleted", default: false})
+    private isDeleted!: boolean;
+
+    @Column({type: "timestamptz", name: "created_at", nullable: false, default: new Date()})
+    private createdAt!: Date;
+
+    @Column({type: "timestamptz", name: "updated_at", nullable: true})
+    private updatedAt!: Date | null;
+
+    @Column({type: "varchar", name: "name", length: 100})
     private name!: string
+
+    @Column({type: "varchar", name: "surname", length: 100})
     private surname!: string
+
+    @Column({type: "varchar", name: "phoneNumber", length: 11})
     private phoneNumber!: string
+
+    @Column({type: "text", name: "address"})
     private address!: string;
 
     private constructor() {}
