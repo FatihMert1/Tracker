@@ -22,10 +22,10 @@ class Employee {
     private userId!: number;
 
     @OneToOne(() => User)
-    @JoinColumn()
+    @JoinColumn({name: "user_id"})
     private user!: User;
 
-    @Column({type: "varchar", name: "identity_number", nullable: false, length: 11})
+    @Column({type: "varchar", name: "identity_number", nullable: false, length: 11, unique: true})
     private identityNumber!: string;
 
     private constructor() {}

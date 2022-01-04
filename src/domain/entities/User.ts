@@ -22,7 +22,7 @@ class User {
     @Column({type: "varchar", name: "surname", length: 100})
     private surname!: string
 
-    @Column({type: "varchar", name: "phoneNumber", length: 11})
+    @Column({type: "varchar", name: "phoneNumber", length: 11, unique: true})
     private phoneNumber!: string
 
     @Column({type: "text", name: "address"})
@@ -42,6 +42,27 @@ class User {
 
         return user;
     }
+
+    public getId(): number {
+        return this.id;
+    }
+
+    public getName(): string {
+        return this.name;
+    }
+
+    public getSurname(): string {
+        return this.surname;
+    }
+
+    public getPhoneNumber(): string {
+        return this.phoneNumber;
+    }
+
+    public getAddress(): string {
+        return this.address;
+    }
+
 
     private setName(name: string): void {
         if (StringValidator.isNullOrWhiteSpace(name))
